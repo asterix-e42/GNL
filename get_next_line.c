@@ -6,15 +6,11 @@
 /*   By: tdumouli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 06:21:14 by tdumouli          #+#    #+#             */
-/*   Updated: 2016/11/23 12:03:10 by tdumouli         ###   ########.fr       */
+/*   Updated: 2016/12/06 23:15:56 by tdumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <unistd.h>
 #include "get_next_line.h"
-#include "libft.h"
-#include <stdlib.h>
 
 int		remplissage(const int fd, char **line, int i, char **buf)
 {

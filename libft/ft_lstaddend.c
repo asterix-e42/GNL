@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_lstaddend.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdumouli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/20 16:37:07 by tdumouli          #+#    #+#             */
-/*   Updated: 2016/12/06 23:05:01 by tdumouli         ###   ########.fr       */
+/*   Created: 2016/11/11 06:42:48 by tdumouli          #+#    #+#             */
+/*   Updated: 2016/11/11 06:42:59 by tdumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
+#include <string.h>
 
-# include <fcntl.h>
-# include <unistd.h>
-# include "libft/libft.h"
-# include <stdlib.h>
+void	ft_lstaddend(t_list **alst, t_list *new)
+{
+	t_list	*parcourt;
 
-# define BUFF_SIZE 1000
-
-int		get_next_line(const int fd, char **line);
-
-#endif
+	if ((*alst) == NULL)
+		(*alst) = new;
+	else
+	{
+		parcourt = *alst;
+		while ((parcourt->next))
+			parcourt = parcourt->next;
+		parcourt->next = new;
+	}
+}

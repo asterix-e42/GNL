@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdumouli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/20 16:37:07 by tdumouli          #+#    #+#             */
-/*   Updated: 2016/12/06 23:05:01 by tdumouli         ###   ########.fr       */
+/*   Created: 2016/11/07 01:32:13 by tdumouli          #+#    #+#             */
+/*   Updated: 2016/11/13 20:11:21 by tdumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
+#include <unistd.h>
 
-# include <fcntl.h>
-# include <unistd.h>
-# include "libft/libft.h"
-# include <stdlib.h>
+void	ft_putnbr(int n)
+{
+	int	i;
 
-# define BUFF_SIZE 1000
-
-int		get_next_line(const int fd, char **line);
-
-#endif
+	if (n == 0)
+	{
+		write(1, "0", 1);
+		return ;
+	}
+	if (n < 0)
+	{
+		if (n == -2147483648)
+		{
+			write(1, "-2147483648", 11);
+			return ;
+		}
+		write(1, "-", 1);
+		n = ~n + 1;
+	}
+	i = ft_intlen(n);
+	while (--i != -1)
+		ft_putchar(n / ft_power(10, i) % 10 + '0');
+}

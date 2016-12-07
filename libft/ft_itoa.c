@@ -1,25 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdumouli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/20 16:37:07 by tdumouli          #+#    #+#             */
-/*   Updated: 2016/12/06 23:05:01 by tdumouli         ###   ########.fr       */
+/*   Created: 2016/11/06 23:38:43 by tdumouli          #+#    #+#             */
+/*   Updated: 2016/11/13 21:10:38 by tdumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include <string.h>
+#include <stdlib.h>
 
-# include <fcntl.h>
-# include <unistd.h>
-# include "libft/libft.h"
-# include <stdlib.h>
+char		*ft_itoa(int n)
+{
+	int		nb;
+	char	*tab;
+	int		len;
 
-# define BUFF_SIZE 1000
-
-int		get_next_line(const int fd, char **line);
-
-#endif
+	nb = n;
+	len = 1 + (n < 0);
+	while (nb /= 10)
+		len++;
+	if (!(tab = (char *)malloc(sizeof(char) * len + 1)))
+		return (NULL);
+	*(tab + len) = '\0';
+	*(tab) = 'r';
+	if (n < 0)
+		*(tab) = '-';
+	else
+		n = -n;
+	while (len-- - (*tab == '-'))
+	{
+		*(tab + len) = '0' - (n % 10);
+		n /= 10;
+	}
+	return (tab);
+}

@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdumouli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/20 16:37:07 by tdumouli          #+#    #+#             */
-/*   Updated: 2016/12/06 23:05:01 by tdumouli         ###   ########.fr       */
+/*   Created: 2016/11/07 03:07:50 by tdumouli          #+#    #+#             */
+/*   Updated: 2016/11/09 04:09:56 by tdumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include <string.h>
+#include <stdlib.h>
+#include "libft.h"
 
-# include <fcntl.h>
-# include <unistd.h>
-# include "libft/libft.h"
-# include <stdlib.h>
+char		*ft_strncat(char *restrict dest, const char *restrict src, size_t n)
+{
+	size_t		i;
+	size_t		end_dest;
+	size_t		length;
 
-# define BUFF_SIZE 1000
-
-int		get_next_line(const int fd, char **line);
-
-#endif
+	length = ft_strlen(src);
+	end_dest = ft_strlen(dest);
+	i = -1;
+	while (++i < length && i < n)
+		*(dest + i + end_dest) = *(src + i);
+	*(dest + i + end_dest) = '\0';
+	return (dest);
+}
